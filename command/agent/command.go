@@ -7,6 +7,7 @@ import (
 	"github.com/hashicorp/serf/serf"
 	"github.com/mitchellh/cli"
 	"io"
+	"log"
 	"net"
 	"os"
 	"strings"
@@ -163,6 +164,7 @@ func (c *Command) Run(args []string) int {
 			Role: serfConfig.Role,
 		},
 		Scripts: eventScripts,
+		Logger:  log.New(logOutput, "", log.LstdFlags),
 	}
 	agent.RegisterEventHandler(scriptEH)
 
